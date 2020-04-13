@@ -1,0 +1,8 @@
+name: 'install cplay'
+description: 'install App::cplay'
+branding:
+  icon: 'arrow-right'
+  color: 'blue'
+runs:
+  using: 'node12'
+  main: 'index.js'

@@ -1,0 +1,15 @@
+name: check
+
+on: [push]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    name: Testing GitHub action
+    steps:
+    - name: install-cpm
+      uses: perl-actions/install-cplay@master
+    - name: which cplay
+      run: which cplay
+    - name: cplay --version
+      run: cplay --version
