@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: install-clay
         uses: ./
+        with:
+          ci: false
       - name: which cplay
         run: which cplay
       - name: cplay --version
