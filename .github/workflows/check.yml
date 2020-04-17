@@ -20,7 +20,7 @@ jobs:
     name: "Install a single module"
     steps:
       - uses: actions/checkout@v2
-      - name: install-cplay A1z-Html
+      - name: install-with-cplay A1z-Html
         uses: ./
         with:
           install: "A1z-Html"
@@ -31,7 +31,7 @@ jobs:
     name: "Install without tests and args"
     steps:
       - uses: actions/checkout@v2
-      - name: install-cplay A1z-Html
+      - name: install-with-cplay A1z-Html
         uses: ./
         with:
           install: "A1z-Html"
@@ -44,7 +44,7 @@ jobs:
     name: "Install two modules"
     steps:
       - uses: actions/checkout@v2
-      - name: install-cplay abbreviation A1z-Html
+      - name: install-with-cplay abbreviation A1z-Html
         uses: ./
         with:
           install: |
@@ -65,7 +65,7 @@ jobs:
       - name: "Create a cpanfile"
         run: |
           echo "requires 'A1z-Html';" >> cpanfile
-      - name: install-cplay cpanfile
+      - name: install-with-cplay cpanfile
         uses: ./
         with:
           cpanfile: "cpanfile"
@@ -76,7 +76,7 @@ jobs:
     name: "Install from tarball"
     steps:
       - uses: actions/checkout@v2
-      - name: "install-cplay --from-tarball"
+      - name: "install-with-cplay --from-tarball"
         uses: ./
         with:
           tarball: "https://github.com/pause-play/A1z-Html/archive/p5.tar.gz"

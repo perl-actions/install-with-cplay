@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: perl -V
-      - uses: perl-actions/install-cplay@cplay-ci
+      - uses: perl-actions/install-with-cplay@cplay-ci
 
   # ---------------------------------------------------------
   # testing cplay installation using perl-tester docker images
@@ -39,7 +39,7 @@ jobs:
       - name: perl -V
         run: perl -V
 
-      - name: "install-cplay"
-        uses: perl-actions/install-cplay@cplay-ci
+      - name: "install-with-cplay"
+        uses: perl-actions/install-with-cplay@cplay-ci
         with:
           sudo: false

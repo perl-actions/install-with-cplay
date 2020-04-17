@@ -1,6 +1,6 @@
-[![Actions Status](https://github.com/perl-actions/install-cplay/workflows/check/badge.svg)](https://github.com/perl-actions/install-cplay/actions)
+[![Actions Status](https://github.com/perl-actions/install-with-cplay/workflows/check/badge.svg)](https://github.com/perl-actions/install-with-cplay/actions)
 
-# install-cplay
+# install-with-cplay
 
 GitHub action to install a perl distribution using App::cplay
 
@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     name: "cplay"
     steps:
-      - name: "install-cplay"
-        uses: perl-actions/install-cplay@cplay-ci
+      - name: "install-with-cplay"
+        uses: perl-actions/install-with-cplay@cplay-ci
 ```
 
 ## Inputs
@@ -47,7 +47,7 @@ none
 
 ```yaml
 - name: Install multiple modules
-  uses: perl-actions/install-cplay@v1.0
+  uses: perl-actions/install-with-cplay@v1.0
   with:
     install: Module::One
 ```
@@ -56,7 +56,7 @@ You can use either a module name or a distribution name
 
 ```yaml
 - name: Install multiple modules
-  uses: perl-actions/install-cplay@v1.0
+  uses: perl-actions/install-with-cplay@v1.0
   with:
     install: Distribution-Name
 ```
@@ -67,7 +67,7 @@ To install more than a single module, use a string seperated by `\n` character.
 
 ```yaml
 - name: Install multiple modules
-  uses: perl-actions/install-cplay@v1.0
+  uses: perl-actions/install-with-cplay@v1.0
   with:
     install: |
     	Module::One
@@ -80,7 +80,7 @@ You can use a `cpanfile` to install multiple modules.
 
 ```yaml
 - name: Install using a cpanfile
-  uses: perl-actions/install-cplay@v1.0
+  uses: perl-actions/install-with-cplay@v1.0
   with:
     cpanfile: "your-cpanfile"
 ```
@@ -89,7 +89,7 @@ you can also requests some specific rules using the extra `args` argument.
 
 ```yaml
 - name: Install using a cpanfile
-  uses: perl-actions/install-cplay@v1.0
+  uses: perl-actions/install-with-cplay@v1.0
   with:
     cpanfile: "your-cpanfile"
     args: "--with-recommends --with-requires"
@@ -102,8 +102,8 @@ install_from_tarball:
   runs-on: ubuntu-latest
   name: "Install from tarball"
   steps:
-    - name: install-cplay --from-tarball
-      uses: perl-actions/install-cplay@v1.0
+    - name: install-with-cplay --from-tarball
+      uses: perl-actions/install-with-cplay@v1.0
       with:
         tarball: "https://github.com/${{ github.repository }}/archive/p5.tar.gz"
 ```
@@ -112,7 +112,7 @@ install_from_tarball:
 
 ```yaml
 - name: Install multiple modules
-  uses: perl-actions/install-cplay@v1.0
+  uses: perl-actions/install-with-cplay@v1.0
   with:
     install: My::Module
     tests: false
