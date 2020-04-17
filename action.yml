@@ -4,7 +4,6 @@ branding:
   icon: "arrow-right"
   color: "blue"
 inputs:
-
   install:
     description: "List of modules or distributions to install [seperated by newline]"
     required: false

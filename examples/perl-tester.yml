@@ -13,7 +13,7 @@ jobs:
   cplay:
     runs-on: ubuntu-latest
     steps:
-      - run: perl -V 
+      - run: perl -V
       - uses: perl-actions/install-cplay@cplay-ci
 
   # ---------------------------------------------------------
