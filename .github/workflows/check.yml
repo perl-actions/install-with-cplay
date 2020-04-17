@@ -75,7 +75,7 @@ jobs:
     steps:
       # for now install missing dependencies using cpm
       ### FIXME remove once all deps are indexed
-      - uses: perl-actions/install-cpm@v1.1
+      - uses: perl-actions/install-with-cpm@v1.1
         with:
           install: "Module::CPANfile"
       # ......
