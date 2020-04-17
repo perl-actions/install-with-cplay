@@ -1,7 +1,9 @@
-const core = require("@actions/core");
+// https://github.com/actions/toolkit
+
+const core   = require("@actions/core");
 const github = require("@actions/github");
-const tc = require("@actions/tool-cache");
-const exec = require("@actions/exec");
+const tc     = require("@actions/tool-cache");
+const exec   = require("@actions/exec");
 
 async function install_cplay() {
     const cplay = await tc.downloadTool("https://git.io/cplay");
@@ -11,9 +13,21 @@ async function install_cplay() {
 }
 
 function cplay_ci() {
-    const repository = github.repository;
+
+    const gh_context = JSON.stringify(github.context, undefined, 2)
+    console.log(`The context: ${gh_context}`);
+
+    const payload = JSON.stringify(github.context.payload, undefined, 2)
+    console.log(`The event payload: ${payload}`);
+
+    const repository = github.context.payload.repository.fullname;
+    const commit      = github.context.payload.after;
+    const sha = github.context.sha;
 
     console.log(`GIT REPO: ${repository}`);
+    console.log(`GIT ID: ${commit}`);
+    console.log(`GIT SHA: ${sha}`);
+
 
     return;
 }
