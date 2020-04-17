@@ -1,8 +1,25 @@
-name: 'install cplay'
-description: 'install App::cplay'
+name: "install using cplay client"
+description: "install distributions using App::cplay"
 branding:
-  icon: 'arrow-right'
-  color: 'blue'
+  icon: "arrow-right"
+  color: "blue"
+inputs:
+  install:
+    description: "List of modules or distributions to install [seperated by newline]"
+    required: false
+  cpanfile:
+    description: "Use a cpanfile to install modules"
+    required: false
+  tarball:
+    description: "Install from a tarball URL or path"
+    required: false
+  tests:
+    description: "Run or not the unit tests"
+    required: false
+    default: true
+  args:
+    description: "Extra args used passed to install command"
+    required: false
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: "node12"
+  main: "index.js"
