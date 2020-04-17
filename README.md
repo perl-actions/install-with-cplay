@@ -22,7 +22,7 @@ jobs:
 
 ## Using Perl Tester
 
-```
+```yaml
 jobs:
   perl:
     runs-on: ubuntu-latest
@@ -47,6 +47,7 @@ jobs:
       - name: "install-with-cplay"
         uses: perl-actions/install-with-cplay@v1.0
         with:
+          sudo: false
           install: |
             First::Module
             Second::Module

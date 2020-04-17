@@ -3,6 +3,9 @@ name: check
 on: [push]
 
 jobs:
+  ## ------------------------------------------------
+  ## install cplay without any modules
+  ## ------------------------------------------------
   install:
     runs-on: ubuntu-latest
     name: Testing GitHub action
@@ -17,6 +20,9 @@ jobs:
       - name: cplay --version
         run: cplay --version
 
+  ## ------------------------------------------------
+  ## install a module using cplay
+  ## ------------------------------------------------
   install_one:
     runs-on: ubuntu-latest
     name: "Install a single module"
@@ -28,6 +34,9 @@ jobs:
           install: "A1z-Html"
           ci: false
 
+  ## ------------------------------------------------
+  ## Install without tests and args
+  ## ------------------------------------------------
   install_notests:
     runs-on: ubuntu-latest
     name: "Install without tests and args"
@@ -41,6 +50,9 @@ jobs:
           args: "--reinstall --installdir vendor"
           ci: false
 
+  ## ------------------------------------------------
+  ## Install two modules
+  ## ------------------------------------------------
   install_two:
     runs-on: ubuntu-latest
     name: "Install two modules"
@@ -54,11 +66,15 @@ jobs:
             ACH
           ci: false
 
+  ## ------------------------------------------------
+  ## Install using a cpanfile
+  ## ------------------------------------------------
   install_cpanfile:
     runs-on: ubuntu-latest
     name: "Install using a cpanfile"
     steps:
-      # for now install missing dependencies using cpm [can be removed once indexed]
+      # for now install missing dependencies using cpm
+      ### FIXME remove once all deps are indexed
       - uses: perl-actions/install-cpm@v1.1
         with:
           install: "Module::CPANfile"
@@ -73,6 +89,9 @@ jobs:
           cpanfile: "cpanfile"
           ci: false
 
+  ## ------------------------------------------------
+  ## Install from a tarball
+  ## ------------------------------------------------
   install_from_tarball:
     runs-on: ubuntu-latest
     name: "Install from tarball"
@@ -83,3 +102,36 @@ jobs:
         with:
           tarball: "https://github.com/pause-play/A1z-Html/archive/p5.tar.gz"
           ci: false
+
+  ## ------------------------------------------------
+  ## testing with Perl from perl-tester
+  ## ------------------------------------------------
+  perl:
+    runs-on: ubuntu-latest
+    name: "perl v${{ matrix.perl-version }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version:
+          - "5.30"
+          - "5.28"
+          # ...
+
+    container:
+      image: perldocker/perl-tester:${{ matrix.perl-version }}
+
+    steps:
+      # no need to checkout
+      #- uses: actions/checkout@v2
+
+      - name: perl -V
+        run: perl -V
+
+      - name: "install-with-cplay"
+        uses: ./
+        with:
+          sudo: false
+          install: |
+            abbreviation
+            ACH
