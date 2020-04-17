@@ -24,6 +24,7 @@ jobs:
         uses: ./
         with:
           install: "A1z-Html"
+          ci: false
 
   install_notests:
     runs-on: ubuntu-latest
@@ -36,6 +37,7 @@ jobs:
           install: "A1z-Html"
           tests: false
           args: "--reinstall --installdir vendor"
+          ci: false
 
   install_two:
     runs-on: ubuntu-latest
@@ -48,6 +50,7 @@ jobs:
           install: |
             abbreviation
             ACH
+          ci: false
 
   install_cpanfile:
     runs-on: ubuntu-latest
@@ -66,6 +69,7 @@ jobs:
         uses: ./
         with:
           cpanfile: "cpanfile"
+          ci: false
 
   install_from_tarball:
     runs-on: ubuntu-latest
@@ -76,3 +80,4 @@ jobs:
         uses: ./
         with:
           tarball: "https://github.com/pause-play/A1z-Html/archive/p5.tar.gz"
+          ci: false

@@ -4,22 +4,38 @@ branding:
   icon: "arrow-right"
   color: "blue"
 inputs:
+
   install:
     description: "List of modules or distributions to install [seperated by newline]"
     required: false
+
   cpanfile:
     description: "Use a cpanfile to install modules"
     required: false
+
   tarball:
     description: "Install from a tarball URL or path"
     required: false
+
   tests:
     description: "Run or not the unit tests"
     required: false
     default: true
+
   args:
     description: "Extra args used passed to install command"
     required: false
+
+  sudo:
+    description: "Perform installations as root"
+    required: false
+    default: true
+
+  ci:
+    description: "Run the CI workflow for cplay"
+    required: false
+    default: true
+
 runs:
   using: "node12"
   main: "index.js"

@@ -4,6 +4,16 @@
 
 GitHub action to install a perl distribution using App::cplay
 
+```
+jobs:
+  cplay:
+    runs-on: ubuntu-latest
+    name: "cplay"
+    steps:
+      - name: "install-cplay"
+        uses: perl-actions/install-cplay@cplay-ci
+```
+
 ## Inputs
 
 ### `install`
