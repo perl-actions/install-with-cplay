@@ -3,7 +3,6 @@ name: check
 on: [push]
 
 jobs:
-
   install:
     runs-on: ubuntu-latest
     name: Testing GitHub action
@@ -16,3 +15,64 @@ jobs:
       - name: cplay --version
         run: cplay --version
 
+  install_one:
+    runs-on: ubuntu-latest
+    name: "Install a single module"
+    steps:
+      - uses: actions/checkout@v2
+      - name: install-cplay A1z-Html
+        uses: ./
+        with:
+          install: "A1z-Html"
+
+  install_notests:
+    runs-on: ubuntu-latest
+    name: "Install without tests and args"
+    steps:
+      - uses: actions/checkout@v2
+      - name: install-cplay A1z-Html
+        uses: ./
+        with:
+          install: "A1z-Html"
+          tests: false
+          args: "--reinstall --installdir vendor"
+
+  install_two:
+    runs-on: ubuntu-latest
+    name: "Install two modules"
+    steps:
+      - uses: actions/checkout@v2
+      - name: install-cplay abbreviation A1z-Html
+        uses: ./
+        with:
+          install: |
+            abbreviation
+            ACH
+
+  install_cpanfile:
+    runs-on: ubuntu-latest
+    name: "Install using a cpanfile"
+    steps:
+      # for now install missing dependencies using cpm [can be removed once indexed]
+      - uses: perl-actions/install-cpm@v1.1
+        with:
+          install: "Module::CPANfile"
+      # ......
+      - uses: actions/checkout@v2
+      - name: "Create a cpanfile"
+        run: |
+          echo "requires 'A1z-Html';" >> cpanfile
+      - name: install-cplay cpanfile
+        uses: ./
+        with:
+          cpanfile: "cpanfile"
+
+  install_from_tarball:
+    runs-on: ubuntu-latest
+    name: "Install from tarball"
+    steps:
+      - uses: actions/checkout@v2
+      - name: "install-cplay --from-tarball"
+        uses: ./
+        with:
+          tarball: "https://github.com/pause-play/A1z-Html/archive/p5.tar.gz"
