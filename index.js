@@ -14,15 +14,15 @@ async function install_cplay() {
 
 function cplay_ci() {
 
-    const gh_context = JSON.stringify(github.context, undefined, 2)
-    console.log(`The context: ${gh_context}`);
+    // const gh_context = JSON.stringify(github.context, undefined, 2)
+    // console.log(`The context: ${gh_context}`);
 
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`The event payload: ${payload}`);
 
-    const repository = github.context.payload.repository.fullname;
+    const repository  = github.context.payload.repository.full_name;
     const commit      = github.context.payload.after;
-    const sha = github.context.sha;
+    const sha         = github.context.sha;
 
     console.log(`GIT REPO: ${repository}`);
     console.log(`GIT ID: ${commit}`);
