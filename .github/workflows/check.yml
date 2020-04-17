@@ -131,6 +131,7 @@ jobs:
 
         uses: ./
         with:
+          ci: false
           sudo: false
           install: |
             abbreviation
