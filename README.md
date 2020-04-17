@@ -2,16 +2,54 @@
 
 # install-with-cplay
 
+## Basic Usage using system Perl
+
 GitHub action to install a perl distribution using App::cplay
 
-```
+```yaml
 jobs:
   cplay:
     runs-on: ubuntu-latest
     name: "cplay"
     steps:
+      - name: Install multiple modules
+        uses: perl-actions/install-with-cplay@v1.0
+        with:
+          install: |
+            First::Module
+            Second::Module
+```
+
+## Using Perl Tester
+
+```
+jobs:
+  perl:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version:
+          - "5.30"
+          - "5.28"
+
+    container:
+      image: perldocker/perl-tester:${{ matrix.perl-version }}
+
+    steps:
+      # no need to checkout
+      #- uses: actions/checkout@v2
+
+      - name: perl -V
+        run: perl -V
+
       - name: "install-with-cplay"
-        uses: perl-actions/install-with-cplay@cplay-ci
+        uses: perl-actions/install-with-cplay@v1.0
+        with:
+          install: |
+            First::Module
+            Second::Module
 ```
 
 ## Inputs
@@ -46,7 +84,7 @@ none
 ### Install one module or distribution
 
 ```yaml
-- name: Install multiple modules
+- name: Install one module
   uses: perl-actions/install-with-cplay@v1.0
   with:
     install: Module::One
@@ -55,7 +93,7 @@ none
 You can use either a module name or a distribution name
 
 ```yaml
-- name: Install multiple modules
+- name: Install one distribution
   uses: perl-actions/install-with-cplay@v1.0
   with:
     install: Distribution-Name
@@ -71,7 +109,7 @@ To install more than a single module, use a string seperated by `\n` character.
   with:
     install: |
     	Module::One
-        Another::Module
+      Another::Module
 ```
 
 ### Install using a cpanfile
