@@ -122,13 +122,13 @@ jobs:
       image: perldocker/perl-tester:${{ matrix.perl-version }}
 
     steps:
-      # no need to checkout
-      #- uses: actions/checkout@v2
 
       - name: perl -V
         run: perl -V
 
+      - uses: actions/checkout@v2
       - name: "install-with-cplay"
+
         uses: ./
         with:
           sudo: false
