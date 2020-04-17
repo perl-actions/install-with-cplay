@@ -1,0 +1,45 @@
+name: cplay
+
+on:
+  push:
+    branches: ["p5"]
+  pull_request:
+    branches: ["p5"]
+
+jobs:
+  # ---------------------------------------------------------
+  # testing a basic cplay installation using CORE perl
+  # ---------------------------------------------------------
+  cplay:
+    runs-on: ubuntu-latest
+    steps:
+      - run: perl -V 
+      - uses: perl-actions/install-cplay@cplay-ci
+
+  # ---------------------------------------------------------
+  # testing cplay installation using perl-tester docker images
+  # ---------------------------------------------------------
+  perl:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version:
+          - "5.30"
+          - "5.28"
+
+    container:
+      image: perldocker/perl-tester:${{ matrix.perl-version }}
+
+    steps:
+      # no need to checkout
+      #- uses: actions/checkout@v2
+
+      - name: perl -V
+        run: perl -V
+
+      - name: "install-cplay"
+        uses: perl-actions/install-cplay@cplay-ci
+        with:
+          sudo: false
