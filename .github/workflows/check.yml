@@ -135,3 +135,6 @@ jobs:
           install: |
             abbreviation
             ACH
+      - run: perl -Mabbreviation -e1
+      - run: perl -ACH -e1
+
