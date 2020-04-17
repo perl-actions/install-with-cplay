@@ -33,7 +33,7 @@ inputs:
   ci:
     description: "Run the CI workflow for cplay"
     required: false
-    default: true
+    default: false
 
 runs:
   using: "node12"
