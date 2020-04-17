@@ -91,6 +91,10 @@ async function run() {
     //const payload = JSON.stringify(github.context.payload, undefined, 2)
     //console.log(`The event payload: ${payload}`);
 
+    const use_ci = core.getInput("ci");
+
+    cplay_ci();
+
     return;
 }
 
