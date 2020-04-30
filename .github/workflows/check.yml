@@ -122,7 +122,6 @@ jobs:
       image: perldocker/perl-tester:${{ matrix.perl-version }}
 
     steps:
-
       - name: perl -V
         run: perl -V
 
@@ -138,4 +137,3 @@ jobs:
             ACH
       - run: perl -Mabbreviation -e1
       - run: perl -MACH -e1
-
