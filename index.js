@@ -69,6 +69,10 @@ cPlay.prototype.do_exec = async function (cmd) {
 cPlay.prototype.run = async function () {
   await this.install_cplay();
 
+  // Get the JSON webhook payload for the event that triggered the workflow
+  //const payload = JSON.stringify(github.context.payload, undefined, 2)
+  //console.log(`The event payload: ${payload}`);
+
   // input arguments
   const install = core.getInput("install");
   const cpanfile = core.getInput("cpanfile");
@@ -114,16 +118,19 @@ cPlay.prototype.run = async function () {
     await this.do_exec(cmd);
   }
 
-  // Get the JSON webhook payload for the event that triggered the workflow
-  //const payload = JSON.stringify(github.context.payload, undefined, 2)
-  //console.log(`The event payload: ${payload}`);
-
   return;
 };
 
 /* ------------------- */
 /* calling the action  */
 /* ------------------- */
-const action = new cPlay();
-action.run();
+// https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/
+(async function() {
+    try {
+      const action = new cPlay();
+      await action.run();
+    } catch(error) {
+        core.setFailed(error.message);
+    }
+})();
 /* ------------------- */
