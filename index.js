@@ -22,11 +22,11 @@ function is_false(b) {
 }
 
 /*
- * cPlay action
+ * cNext action
  */
 
-var cPlay = function cPlay() {
-  this.workflow = "cplay";
+var cNext = function cNext() {
+  this.workflow = "cnext";
 
   // this.install   = core.getInput("install");
   // this.cpanfile  = core.getInput("cpanfile");
@@ -36,14 +36,14 @@ var cPlay = function cPlay() {
   return;
 };
 
-cPlay.prototype.install_cplay = async function () {
-  const cplay = await tc.downloadTool("https://git.io/cplay");
-  core.setOutput("cplay", cplay);
-  await this.do_exec(["perl", cplay, "self-install"]);
+cNext.prototype.install_cnext = async function () {
+  const cnext = await tc.downloadTool("https://git.io/cnext");
+  core.setOutput("cnext", cnext);
+  await this.do_exec(["perl", cnext, "self-install"]);
   return;
 };
 
-cPlay.prototype.get_tarball_value = function () {
+cNext.prototype.get_tarball_value = function () {
   const use_ci = is_true(core.getInput("ci"));
 
   if (!use_ci) {
@@ -57,7 +57,7 @@ cPlay.prototype.get_tarball_value = function () {
   return `https://github.com/${repository}/archive/${sha}.tar.gz`;
 };
 
-cPlay.prototype.do_exec = async function (cmd) {
+cNext.prototype.do_exec = async function (cmd) {
   const sudo = is_true(core.getInput("sudo"));
   const bin = sudo ? "sudo" : cmd.shift();
 
@@ -66,8 +66,8 @@ cPlay.prototype.do_exec = async function (cmd) {
   await exec.exec(bin, cmd);
 };
 
-cPlay.prototype.run = async function () {
-  await this.install_cplay();
+cNext.prototype.run = async function () {
+  await this.install_cnext();
 
   // Get the JSON webhook payload for the event that triggered the workflow
   //const payload = JSON.stringify(github.context.payload, undefined, 2)
@@ -90,7 +90,7 @@ cPlay.prototype.run = async function () {
   if (install !== null && install.length) {
     console.log(`install: ${install}!`);
     const list = install.split("\n");
-    var cmd = ["cplay", "install", "-d", w_test];
+    var cmd = ["cnext", "install", "-d", w_test];
     if (w_args.length) {
       cmd = cmd.concat(w_args);
     }
@@ -100,7 +100,7 @@ cPlay.prototype.run = async function () {
 
   if (cpanfile !== null && cpanfile.length) {
     console.log(`cpanfile: ${cpanfile}!`);
-    var cmd = ["cplay", "cpanfile", "-d", w_test];
+    var cmd = ["cnext", "cpanfile", "-d", w_test];
     if (w_args.length) {
       cmd = cmd.concat(w_args);
     }
@@ -110,7 +110,7 @@ cPlay.prototype.run = async function () {
 
   if (tarball !== null && tarball.length) {
     console.log(`tarball: ${tarball}!`);
-    var cmd = ["cplay", "from-tarball", "-d", w_test];
+    var cmd = ["cnext", "from-tarball", "-d", w_test];
     if (w_args.length) {
       cmd = cmd.concat(w_args);
     }
@@ -127,7 +127,7 @@ cPlay.prototype.run = async function () {
 // https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/
 (async function() {
     try {
-      const action = new cPlay();
+      const action = new cNext();
       await action.run();
     } catch(error) {
         core.setFailed(error.message);
