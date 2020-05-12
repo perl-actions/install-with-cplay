@@ -1,22 +1,22 @@
 {
-  "name": "install-with-cplay",
+  "name": "install-with-cnext",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/perl-actions/install-with-cplay/workflows/check/badge.svg)](https://github.com/perl-actions/install-with-cplay/actions)",
+  "description": "[![Actions Status](https://github.com/perl-actions/install-with-cnext/workflows/check/badge.svg)](https://github.com/perl-actions/install-with-cnext/actions)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/perl-actions/install-with-cplay.git"
+    "url": "git+https://github.com/perl-actions/install-with-cnext.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/perl-actions/install-with-cplay/issues"
+    "url": "https://github.com/perl-actions/install-with-cnext/issues"
   },
-  "homepage": "https://github.com/perl-actions/install-with-cplay#readme",
+  "homepage": "https://github.com/perl-actions/install-with-cnext#readme",
   "dependencies": {
     "@actions/core": "^1.2.3",
     "@actions/exec": "^1.0.3",

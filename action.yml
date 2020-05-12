@@ -1,5 +1,5 @@
-name: "install using cplay client"
-description: "install distributions using App::cplay"
+name: "install using cnext client"
+description: "install distributions using App::cnext"
 branding:
   icon: "arrow-right"
   color: "blue"
@@ -31,7 +31,7 @@ inputs:
     default: true
 
   ci:
-    description: "Run the CI workflow for cplay"
+    description: "Run the CI workflow for cnext"
     required: false
     default: false
 

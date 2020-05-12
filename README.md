@@ -1,19 +1,19 @@
-[![Actions Status](https://github.com/perl-actions/install-with-cplay/workflows/check/badge.svg)](https://github.com/perl-actions/install-with-cplay/actions)
+[![Actions Status](https://github.com/perl-actions/install-with-cnext/workflows/check/badge.svg)](https://github.com/perl-actions/install-with-cnext/actions)
 
-# install-with-cplay
+# install-with-cnext
 
 ## Basic Usage using system Perl
 
-GitHub action to install a perl distribution using App::cplay
+GitHub action to install a perl distribution using App::cnext
 
 ```yaml
 jobs:
-  cplay:
+  cnext:
     runs-on: ubuntu-latest
-    name: "cplay"
+    name: "cnext"
     steps:
       - name: Install multiple modules
-        uses: perl-actions/install-with-cplay@v1.0
+        uses: perl-actions/install-with-cnext@v1.0
         with:
           install: |
             First::Module
@@ -44,8 +44,8 @@ jobs:
       - name: perl -V
         run: perl -V
 
-      - name: "install-with-cplay"
-        uses: perl-actions/install-with-cplay@v1.0
+      - name: "install-with-cnext"
+        uses: perl-actions/install-with-cnext@v1.0
         with:
           sudo: false
           install: |
@@ -74,7 +74,7 @@ Possible values: true | false [default: true]
 
 ### `args`
 
-Extra arguments to pass to the cplay command line.
+Extra arguments to pass to the cnext command line.
 
 ## Outputs
 
@@ -86,7 +86,7 @@ none
 
 ```yaml
 - name: Install one module
-  uses: perl-actions/install-with-cplay@v1.0
+  uses: perl-actions/install-with-cnext@v1.0
   with:
     install: Module::One
 ```
@@ -95,7 +95,7 @@ You can use either a module name or a distribution name
 
 ```yaml
 - name: Install one distribution
-  uses: perl-actions/install-with-cplay@v1.0
+  uses: perl-actions/install-with-cnext@v1.0
   with:
     install: Distribution-Name
 ```
@@ -106,7 +106,7 @@ To install more than a single module, use a string seperated by `\n` character.
 
 ```yaml
 - name: Install multiple modules
-  uses: perl-actions/install-with-cplay@v1.0
+  uses: perl-actions/install-with-cnext@v1.0
   with:
     install: |
     	Module::One
@@ -119,7 +119,7 @@ You can use a `cpanfile` to install multiple modules.
 
 ```yaml
 - name: Install using a cpanfile
-  uses: perl-actions/install-with-cplay@v1.0
+  uses: perl-actions/install-with-cnext@v1.0
   with:
     cpanfile: "your-cpanfile"
 ```
@@ -128,7 +128,7 @@ you can also requests some specific rules using the extra `args` argument.
 
 ```yaml
 - name: Install using a cpanfile
-  uses: perl-actions/install-with-cplay@v1.0
+  uses: perl-actions/install-with-cnext@v1.0
   with:
     cpanfile: "your-cpanfile"
     args: "--with-recommends --with-requires"
@@ -141,8 +141,8 @@ install_from_tarball:
   runs-on: ubuntu-latest
   name: "Install from tarball"
   steps:
-    - name: install-with-cplay --from-tarball
-      uses: perl-actions/install-with-cplay@v1.0
+    - name: install-with-cnext --from-tarball
+      uses: perl-actions/install-with-cnext@v1.0
       with:
         tarball: "https://github.com/${{ github.repository }}/archive/p5.tar.gz"
 ```
@@ -151,7 +151,7 @@ install_from_tarball:
 
 ```yaml
 - name: Install multiple modules
-  uses: perl-actions/install-with-cplay@v1.0
+  uses: perl-actions/install-with-cnext@v1.0
   with:
     install: My::Module
     tests: false

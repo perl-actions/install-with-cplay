@@ -26,7 +26,7 @@ function is_false(b) {
  */
 
 var cPlay = function cPlay() {
-  this.workflow = "cplay";
+  this.workflow = "cnext";
 
   // this.install   = core.getInput("install");
   // this.cpanfile  = core.getInput("cpanfile");
@@ -36,10 +36,10 @@ var cPlay = function cPlay() {
   return;
 };
 
-cPlay.prototype.install_cplay = async function () {
-  const cplay = await tc.downloadTool("https://git.io/cplay");
-  core.setOutput("cplay", cplay);
-  await this.do_exec(["perl", cplay, "self-install"]);
+cPlay.prototype.install_cnext = async function () {
+  const cnext = await tc.downloadTool("https://git.io/cnext");
+  core.setOutput("cnext", cnext);
+  await this.do_exec(["perl", cnext, "self-install"]);
   return;
 };
 
@@ -67,7 +67,7 @@ cPlay.prototype.do_exec = async function (cmd) {
 };
 
 cPlay.prototype.run = async function () {
-  await this.install_cplay();
+  await this.install_cnext();
 
   // Get the JSON webhook payload for the event that triggered the workflow
   //const payload = JSON.stringify(github.context.payload, undefined, 2)
@@ -90,7 +90,7 @@ cPlay.prototype.run = async function () {
   if (install !== null && install.length) {
     console.log(`install: ${install}!`);
     const list = install.split("\n");
-    var cmd = ["cplay", "install", "-d", w_test];
+    var cmd = ["cnext", "install", "-d", w_test];
     if (w_args.length) {
       cmd = cmd.concat(w_args);
     }
@@ -100,7 +100,7 @@ cPlay.prototype.run = async function () {
 
   if (cpanfile !== null && cpanfile.length) {
     console.log(`cpanfile: ${cpanfile}!`);
-    var cmd = ["cplay", "cpanfile", "-d", w_test];
+    var cmd = ["cnext", "cpanfile", "-d", w_test];
     if (w_args.length) {
       cmd = cmd.concat(w_args);
     }
@@ -110,7 +110,7 @@ cPlay.prototype.run = async function () {
 
   if (tarball !== null && tarball.length) {
     console.log(`tarball: ${tarball}!`);
-    var cmd = ["cplay", "from-tarball", "-d", w_test];
+    var cmd = ["cnext", "from-tarball", "-d", w_test];
     if (w_args.length) {
       cmd = cmd.concat(w_args);
     }

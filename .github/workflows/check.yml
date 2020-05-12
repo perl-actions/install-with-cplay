@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   ## ------------------------------------------------
-  ## install cplay without any modules
+  ## install cnext without any modules
   ## ------------------------------------------------
   install:
     runs-on: ubuntu-latest
@@ -15,20 +15,20 @@ jobs:
         uses: ./
         with:
           ci: false
-      - name: which cplay
-        run: which cplay
-      - name: cplay --version
-        run: cplay --version
+      - name: which cnext
+        run: which cnext
+      - name: cnext --version
+        run: cnext --version
 
   ## ------------------------------------------------
-  ## install a module using cplay
+  ## install a module using cnext
   ## ------------------------------------------------
   install_one:
     runs-on: ubuntu-latest
     name: "Install a single module"
     steps:
       - uses: actions/checkout@v2
-      - name: install-with-cplay A1z-Html
+      - name: install-with-cnext A1z-Html
         uses: ./
         with:
           install: "A1z-Html"
@@ -42,7 +42,7 @@ jobs:
     name: "Install without tests and args"
     steps:
       - uses: actions/checkout@v2
-      - name: install-with-cplay A1z-Html
+      - name: install-with-cnext A1z-Html
         uses: ./
         with:
           install: "A1z-Html"
@@ -58,7 +58,7 @@ jobs:
     name: "Install two modules"
     steps:
       - uses: actions/checkout@v2
-      - name: install-with-cplay abbreviation A1z-Html
+      - name: install-with-cnext abbreviation A1z-Html
         uses: ./
         with:
           install: |
@@ -83,7 +83,7 @@ jobs:
       - name: "Create a cpanfile"
         run: |
           echo "requires 'A1z-Html';" >> cpanfile
-      - name: install-with-cplay cpanfile
+      - name: install-with-cnext cpanfile
         uses: ./
         with:
           cpanfile: "cpanfile"
@@ -97,7 +97,7 @@ jobs:
     name: "Install from tarball"
     steps:
       - uses: actions/checkout@v2
-      - name: "install-with-cplay --from-tarball"
+      - name: "install-with-cnext --from-tarball"
         uses: ./
         with:
           tarball: "https://github.com/pause-play/A1z-Html/archive/p5.tar.gz"
@@ -126,7 +126,7 @@ jobs:
         run: perl -V
 
       - uses: actions/checkout@v2
-      - name: "install-with-cplay"
+      - name: "install-with-cnext"
 
         uses: ./
         with:
