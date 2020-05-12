@@ -100,7 +100,7 @@ jobs:
       - name: "install-with-cnext --from-tarball"
         uses: ./
         with:
-          tarball: "https://github.com/pause-play/A1z-Html/archive/p5.tar.gz"
+          tarball: "https://github.com/next-cpan/A1z-Html/archive/p5.tar.gz"
           ci: false
 
   ## ------------------------------------------------
