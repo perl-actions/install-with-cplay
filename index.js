@@ -22,10 +22,10 @@ function is_false(b) {
 }
 
 /*
- * cPlay action
+ * cNext action
  */
 
-var cPlay = function cPlay() {
+var cNext = function cNext() {
   this.workflow = "cnext";
 
   // this.install   = core.getInput("install");
@@ -36,14 +36,14 @@ var cPlay = function cPlay() {
   return;
 };
 
-cPlay.prototype.install_cnext = async function () {
+cNext.prototype.install_cnext = async function () {
   const cnext = await tc.downloadTool("https://git.io/cnext");
   core.setOutput("cnext", cnext);
   await this.do_exec(["perl", cnext, "self-install"]);
   return;
 };
 
-cPlay.prototype.get_tarball_value = function () {
+cNext.prototype.get_tarball_value = function () {
   const use_ci = is_true(core.getInput("ci"));
 
   if (!use_ci) {
@@ -57,7 +57,7 @@ cPlay.prototype.get_tarball_value = function () {
   return `https://github.com/${repository}/archive/${sha}.tar.gz`;
 };
 
-cPlay.prototype.do_exec = async function (cmd) {
+cNext.prototype.do_exec = async function (cmd) {
   const sudo = is_true(core.getInput("sudo"));
   const bin = sudo ? "sudo" : cmd.shift();
 
@@ -66,7 +66,7 @@ cPlay.prototype.do_exec = async function (cmd) {
   await exec.exec(bin, cmd);
 };
 
-cPlay.prototype.run = async function () {
+cNext.prototype.run = async function () {
   await this.install_cnext();
 
   // Get the JSON webhook payload for the event that triggered the workflow
@@ -127,7 +127,7 @@ cPlay.prototype.run = async function () {
 // https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/
 (async function() {
     try {
-      const action = new cPlay();
+      const action = new cNext();
       await action.run();
     } catch(error) {
         core.setFailed(error.message);
